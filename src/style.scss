@@ -1,7 +1,7 @@
 $accentColor: #56318f;
 $bgColor: #1e1e2e;
 $cardColor: #2d2d3a;
-$fontColor: rgba(238, 238, 238, 0.78);
+$fontColor: rgba(248, 248, 248, 0.78);
 
 :root {
   font-family: system-ui, Avenir, Helvetica, Arial, sans-serif;
@@ -18,13 +18,9 @@ $fontColor: rgba(238, 238, 238, 0.78);
   -moz-osx-font-smoothing: grayscale;
 }
 
-h1, h2, h3, h4, h5, h6, p {
+h1, h2, h3, h4, h5, h6, p, ul{
   margin: 0;
   font-weight: 400;
-}
-
-ul {
-  margin: 0;
 }
 
 a {
@@ -63,6 +59,67 @@ body {
   padding: 0 2rem;
 }
 
+.modal {
+  display: none;
+  position: fixed;
+  top: 0;
+  right: 0;
+  width: 100%;
+  height: 100%;
+  background: rgba(0,0,0,0.4);
+  z-index: 5;
+
+  &__content {
+    margin: 10% auto;
+    padding: 1.2rem;
+    width: 20rem;
+    background-color: $accentColor;
+    border: none;
+    border-radius: 1rem;
+    display: flex;
+    flex-direction: column;
+  }
+
+  &__heading {
+    padding-bottom: 1rem;
+  }
+
+  &__options {
+    padding: 1rem 0;
+    margin-bottom: 1rem;
+    border-top: 1px solid white;
+    border-bottom: 1px solid white;
+  }
+
+  &__option {
+    padding: 0.5rem 0;
+    display: flex;
+    align-items: center;
+
+    & span {
+      display: inline-block;
+      width: 6rem;
+    }
+
+    &-radio-wrapper {
+      display: flex;
+      align-items: center;
+      flex-wrap: nowrap;
+    }
+  }
+
+  &__controls {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  &__button {
+    background-color: $cardColor;
+    width: 40%;
+  }
+}
+
 .header {
   display: flex;
   justify-content: space-between;
@@ -76,6 +133,7 @@ body {
     align-items: center;
     justify-content: space-between;
     flex-wrap: nowrap;
+    font-size: 1.3rem;
   }
 
   &__logo {
