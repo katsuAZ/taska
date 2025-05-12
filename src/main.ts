@@ -4,38 +4,38 @@ import {addFunctional} from "./addFunctional.ts";
 document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
     <div class="modal" id="modal">
         <div class="modal__content">
-          <label class="modal__heading" id="heading">Add Task</label>
+          <label class="modal__heading" id="modalHeading">Add Task</label>
           <div class="modal__options">
             <div class="modal__option">
               <label class="modal__option-name" for="title">Title:</label>
-              <input type="text" name="title" id="title">
+              <input type="text" name="title" id="modalTitle" required>
             </div>
             <div class="modal__option">
               <label class="modal__option-name" for="description">Description:</label>
-              <input type="text" name="description" id="description">
+              <input type="text" name="description" id="modalDescription">
             </div>
             <div class="modal__option">
               <label class="modal__option-name" for="date">Date:</label>
-              <input type="date" name="date" id="date">
+              <input type="date" name="date" id="modalDate" required>
             </div>
             <div class="modal__option">
               <label class="modal__option-name" for="tag">Tag:</label>
-              <input type="text" name="tag" id="tag">
+              <input type="text" name="tag" id="modalTag" required>
             </div>
             <div class="modal__option">
               <label class="modal__option-name">Priority:</label>
               <div class="modal__option-radio-wrapper">
-                <input type="radio" name="priority" value="High" id="priorityHigh">
+                <input type="radio" name="priority" value="High" required id="priorityHigh">
                 <label for="priorityHigh">High</label>
-                <input type="radio" name="priority" value="Normal" id="priorityNormal">
+                <input checked type="radio" name="priority" value="Normal" required id="priorityNormal">
                 <label for="priorityNormal">Normal</label>
-                <input type="radio" name="priority" value="Low" id="priorityLow">
+                <input type="radio" name="priority" value="Low" required id="priorityLow">
                 <label for="priorityLow">Low</label>
               </div>
             </div>
           </div>
           <div class="modal__controls">
-            <button class="button modal__button" id="saveModalButton">Save</button>
+            <button type="submit" class="button modal__button" id="saveModalButton">Save</button>
             <button class="button modal__button" id="cancelModalButton">Cancel</button>
           </div>
         </div>
@@ -76,23 +76,6 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
           <main class="task-list">
             <h2 class="task-list__heading">Tasks</h2>
             <div class="task-list__layout" id="taskListLayout">
-              <div class="card task-list__card">
-                <div class="card__heading">
-                  <input type="checkbox" class="card__status">
-                  <h4 class="card__title">Be kind</h4>
-                </div>
-                <div class="card__options">
-                  <p class="card__date">Today</p>
-                  <span class="card__separator">|</span>
-                  <p class="card__tag">Personal</p>
-                  <span class="card__separator">|</span>
-                  <p class="card__priority">High</p>
-                </div>
-                <div class="card__buttons">
-                  <button class="button card__edit-button">Edit</button>
-                  <button class="button card__delete-button">Delete</button>
-                </div>
-              </div>
             </div>
           </main>
         </section>
