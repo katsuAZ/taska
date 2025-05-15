@@ -12,7 +12,7 @@ export function addFunctional () {
     const addTaskButton:HTMLButtonElement | null = document.querySelector('#addTaskButton');
     const saveModalButton:HTMLButtonElement | null = document.querySelector('#saveModalButton');
     const cancelModalButton:HTMLButtonElement | null = document.querySelector('#cancelModalButton');
-    const deleteTaskButtons:NodeListOf<Element> = document.querySelectorAll('.card__delete-button');
+    let deleteTaskButtons:NodeListOf<Element>;
 
     const taskListLayout:HTMLDivElement | null = document.querySelector('#taskListLayout');
 
@@ -45,14 +45,9 @@ export function addFunctional () {
     saveModalButton?.addEventListener('click', () => {
         addNewTask();
         clearModal();
+
     });
 
-    deleteTaskButtons?.forEach((button, index) => {
-        console.log(index);
-        button.addEventListener('click', () => {
-            console.log(index);
-        });
-    });
 
     function clearModal () {
         modalWindow ? modalWindow.style.display = "none" : undefined;
@@ -66,6 +61,17 @@ export function addFunctional () {
             modalInputTag.value = '' : undefined;
         modalInputPriority ?
             modalInputPriority.value : undefined;
+    }
+
+    function setupDeleteButton () {
+        deleteTaskButtons = document.querySelectorAll('.card__delete-button');
+        deleteTaskButtons?.forEach((button, index) => {
+            button.addEventListener('click', function deleteTask (event) {
+                taskList.splice(index, 1);
+                event.currentTarget?.removeEventListener('click', deleteTask);
+                renderTasks();
+            });
+        });
     }
 
     function renderTasks () {
@@ -116,5 +122,6 @@ export function addFunctional () {
         };
         taskList.push(newTask);
         renderTasks();
+        setupDeleteButton();
     }
 }
