@@ -48,6 +48,7 @@ export function addFunctional () {
     });
 
     deleteTaskButtons?.forEach((button, index) => {
+        console.log(index);
         button.addEventListener('click', () => {
             console.log(index);
         });
