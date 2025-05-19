@@ -70,9 +70,11 @@ export function addFunctional () {
                 taskList.splice(index, 1);
                 event.currentTarget?.removeEventListener('click', deleteTask);
                 renderTasks();
+                setupTaskButtons();
             });
         });
     }
+    setupTaskButtons();
 
     function renderTasks () {
         let out: string = ``;
