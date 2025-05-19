@@ -62,9 +62,6 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
               <li class="sidebar__option tags__option">#Work</li>
               <li class="sidebar__option tags__option">#Personal</li>
               <li class="sidebar__option tags__option">#Education</li>
-              <li class="sidebar__option tags__option">
-                <button class="button sidebar__button" id="addTagButton">Add Tag</button>
-              </li>
             </ul>
             <h3 class="sidebar__heading filters__heading">Sort</h3>
             <ul class="sidebar__list filters__list">
