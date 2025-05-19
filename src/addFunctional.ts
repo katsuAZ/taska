@@ -13,6 +13,7 @@ export function addFunctional () {
     const saveModalButton:HTMLButtonElement | null = document.querySelector('#saveModalButton');
     const cancelModalButton:HTMLButtonElement | null = document.querySelector('#cancelModalButton');
     let deleteTaskButtons:NodeListOf<Element>;
+    let editTaskButtons:NodeListOf<Element>;
 
     const taskListLayout:HTMLDivElement | null = document.querySelector('#taskListLayout');
 
@@ -40,6 +41,7 @@ export function addFunctional () {
 
     cancelModalButton?.addEventListener('click', () => {
         modalWindow ? modalWindow.style.display = "none" : undefined;
+        clearModal();
     });
 
     saveModalButton?.addEventListener('click', () => {
@@ -64,15 +66,36 @@ export function addFunctional () {
 
     function setupTaskButtons () {
         deleteTaskButtons = document.querySelectorAll('.card__delete-button');
+        editTaskButtons = document.querySelectorAll('.card__edit-button');
 
-        deleteTaskButtons?.forEach((button, index) => {
-            button.addEventListener('click', function deleteTask (event) {
-                taskList.splice(index, 1);
-                event.currentTarget?.removeEventListener('click', deleteTask);
+        taskList.forEach((task, taskIndex) => {
+            editTaskButtons[taskIndex].addEventListener('click', function editTask() {
+                clearModal();
+
+                modalInputTitle? modalInputTitle.value = task.title : undefined;
+                modalInputDescription? modalInputDescription.value = task.description : undefined;
+                modalInputDate? modalInputDate.value = task.date.toLocaleDateString() : undefined;
+                modalInputTag? modalInputTag.value = task.tag : undefined;
+                modalInputPriority? modalInputPriority.value = task.priority : undefined;
+
+                modalWindow ? modalWindow.style.display = "block" : undefined;
+            });
+
+            deleteTaskButtons[taskIndex].addEventListener('click', function deleteTask () {
+                taskList.splice(taskIndex, 1);
                 renderTasks();
                 setupTaskButtons();
             });
         });
+
+        // deleteTaskButtons?.forEach((button, index) => {
+        //     button.addEventListener('click', function deleteTask (event) {
+        //         taskList.splice(index, 1);
+        //         event.currentTarget?.removeEventListener('click', deleteTask);
+        //         renderTasks();
+        //         setupTaskButtons();
+        //     });
+        // });
     }
     setupTaskButtons();
 
