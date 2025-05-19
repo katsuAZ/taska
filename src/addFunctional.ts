@@ -45,7 +45,6 @@ export function addFunctional () {
     saveModalButton?.addEventListener('click', () => {
         addNewTask();
         clearModal();
-
     });
 
 
@@ -63,8 +62,9 @@ export function addFunctional () {
             modalInputPriority.value : undefined;
     }
 
-    function setupDeleteButton () {
+    function setupTaskButtons () {
         deleteTaskButtons = document.querySelectorAll('.card__delete-button');
+
         deleteTaskButtons?.forEach((button, index) => {
             button.addEventListener('click', function deleteTask (event) {
                 taskList.splice(index, 1);
@@ -122,6 +122,6 @@ export function addFunctional () {
         };
         taskList.push(newTask);
         renderTasks();
-        setupDeleteButton();
+        setupTaskButtons();
     }
 }

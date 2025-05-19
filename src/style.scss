@@ -168,7 +168,8 @@ body {
   &__layout {
     display: flex;
     flex-wrap: wrap;
-    justify-content: space-between;
+    justify-content: flex-start;
+    gap: 1rem;
   }
 }
 
@@ -177,7 +178,6 @@ body {
   display: flex;
   flex-direction: column;
   padding: 1rem;
-  margin-bottom: 1rem;
   border-radius: 1rem;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   flex-basis: 28%;
