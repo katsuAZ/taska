@@ -36,6 +36,7 @@ document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
           </div>
           <div class="modal__controls">
             <button type="submit" class="button modal__button" id="saveModalButton">Save</button>
+            <button type="submit" class="button modal__button" id="editModalButton">Edit</button>
             <button class="button modal__button" id="cancelModalButton">Cancel</button>
           </div>
         </div>

@@ -11,6 +11,7 @@ export function addFunctional () {
     const modalWindow:HTMLDivElement | null = document.querySelector('#modal');
     const addTaskButton:HTMLButtonElement | null = document.querySelector('#addTaskButton');
     const saveModalButton:HTMLButtonElement | null = document.querySelector('#saveModalButton');
+    const editModalButton:HTMLButtonElement | null = document.querySelector('#editModalButton');
     const cancelModalButton:HTMLButtonElement | null = document.querySelector('#cancelModalButton');
     let deleteTaskButtons:NodeListOf<Element>;
     let editTaskButtons:NodeListOf<Element>;
@@ -36,6 +37,8 @@ export function addFunctional () {
     let taskList: TaskInfo[] = [];
 
     addTaskButton?.addEventListener('click', () => {
+        editModalButton ? editModalButton.style.display = "none" : undefined;
+        saveModalButton ? saveModalButton.style.display = "block" : undefined;
         modalWindow ? modalWindow.style.display = "block" : undefined;
     });
 
@@ -78,7 +81,21 @@ export function addFunctional () {
                 modalInputTag? modalInputTag.value = task.tag : undefined;
                 modalInputPriority? modalInputPriority.value = task.priority : undefined;
 
+                editModalButton ? editModalButton.style.display = "block" : undefined;
+                saveModalButton ? saveModalButton.style.display = "none" : undefined;
                 modalWindow ? modalWindow.style.display = "block" : undefined;
+
+                editModalButton?.addEventListener('click', () => {
+                    modalInputTitle ? task.title = modalInputTitle.value : undefined;
+                    modalInputDescription ? task.description = modalInputDescription.value : undefined;
+                    modalInputDate ? task.date = new Date(modalInputDate.value) : undefined;
+                    modalInputTag ? task.tag = modalInputTag.value : undefined;
+                    modalInputPriority ? task.priority = modalInputPriority.value : undefined;
+
+                    renderTasks();
+                    modalWindow ? modalWindow.style.display = "none" : undefined;
+                    clearModal();
+                });
             });
 
             deleteTaskButtons[taskIndex].addEventListener('click', function deleteTask () {
