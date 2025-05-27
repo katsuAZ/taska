@@ -22,7 +22,9 @@ export function addFunctional () {
     const modalInputDescription:HTMLInputElement | null = document.querySelector('#modalDescription');
     const modalInputDate:HTMLInputElement | null = document.querySelector('#modalDate');
     const modalInputTag:HTMLInputElement | null = document.querySelector('#modalTag');
-    const modalInputPriority:HTMLInputElement | null = document.querySelector('input[name="priority"]:checked');
+    const modalInputPriorityHigh:HTMLInputElement | null = document.querySelector('#priorityHigh');
+    const modalInputPriorityNormal:HTMLInputElement | null = document.querySelector('#priorityNormal');
+    const modalInputPriorityLow:HTMLInputElement | null = document.querySelector('#priorityLow');
 
     // let task: TaskInfo = {
     //     id: 0,
@@ -63,8 +65,8 @@ export function addFunctional () {
             modalInputDate.value = '' : undefined;
         modalInputTag && modalInputTag.value.length > 0 ?
             modalInputTag.value = '' : undefined;
-        modalInputPriority ?
-            modalInputPriority.value : undefined;
+        // modalInputPriority ?
+        //     modalInputPriority.value : undefined;
     }
 
     function setupTaskButtons () {
@@ -72,6 +74,12 @@ export function addFunctional () {
         editTaskButtons = document.querySelectorAll('.card__edit-button');
 
         taskList.forEach((task, taskIndex) => {
+            deleteTaskButtons[taskIndex].addEventListener('click', function deleteTask () {
+                taskList.splice(taskIndex, 1);
+                renderTasks();
+                setupTaskButtons();
+            });
+
             editTaskButtons[taskIndex].addEventListener('click', function editTask() {
                 clearModal();
 
@@ -95,13 +103,8 @@ export function addFunctional () {
                     renderTasks();
                     modalWindow ? modalWindow.style.display = "none" : undefined;
                     clearModal();
+                    setupTaskButtons();
                 });
-            });
-
-            deleteTaskButtons[taskIndex].addEventListener('click', function deleteTask () {
-                taskList.splice(taskIndex, 1);
-                renderTasks();
-                setupTaskButtons();
             });
         });
 
@@ -159,8 +162,9 @@ export function addFunctional () {
                 new Date(modalInputDate.value) : new Date(),
             tag: modalInputTag && modalInputTag.value.length > 0 ?
                 modalInputTag.value : 'Personal',
-            priority: modalInputPriority ?
-                modalInputPriority.value : 'Normal',
+            priority: modalInputPriorityHigh?.checked == true ? 'High' :
+                modalInputPriorityLow?.checked == true ? 'Low' :
+                'Normal',
         };
         taskList.push(newTask);
         renderTasks();

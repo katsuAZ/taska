@@ -82,6 +82,7 @@ body {
 
   &__heading {
     padding-bottom: 1rem;
+    font-size: 1.3rem;
   }
 
   &__options {
@@ -99,6 +100,7 @@ body {
     &-name {
       display: inline-block;
       width: 6rem;
+      font-size: 1rem;
     }
 
     &-radio-wrapper {
@@ -181,6 +183,7 @@ body {
   border-radius: 1rem;
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
   flex-basis: 28%;
+  min-width: 184px;
 
   &__heading {
     display: flex;

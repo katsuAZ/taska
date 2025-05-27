@@ -4,35 +4,41 @@ import {addFunctional} from "./addFunctional.ts";
 document.querySelector<HTMLDivElement>('#app')!.innerHTML = `
     <div class="modal" id="modal">
         <div class="modal__content">
-          <label class="modal__heading" id="modalHeading">Add Task</label>
+          <h2 class="modal__heading" id="modalHeading">Add Task</h2>
           <div class="modal__options">
-            <div class="modal__option">
-              <label class="modal__option-name" for="title">Title:</label>
-              <input type="text" name="title" id="modalTitle" required>
-            </div>
-            <div class="modal__option">
-              <label class="modal__option-name" for="description">Description:</label>
+            <label class="modal__option" for="title">
+                <h3 class="modal__option-name">Title:</h3>
+                <input type="text" name="title" id="modalTitle" required>
+            </label>
+            <label class="modal__option" for="description">
+              <h3 class="modal__option-name">Description:</h3>
               <input type="text" name="description" id="modalDescription">
-            </div>
-            <div class="modal__option">
-              <label class="modal__option-name" for="date">Date:</label>
+            </label>
+            <label class="modal__option" for="date">
+              <h3 class="modal__option-name">Date:</h3>
               <input type="date" name="date" id="modalDate" required>
-            </div>
-            <div class="modal__option">
-              <label class="modal__option-name" for="tag">Tag:</label>
+            </label>
+            <label class="modal__option" for="tag">
+              <h3 class="modal__option-name">Tag:</h3>
               <input type="text" name="tag" id="modalTag" required>
-            </div>
-            <div class="modal__option">
-              <label class="modal__option-name">Priority:</label>
+            </label>
+            <label class="modal__option">
+              <h3 class="modal__option-name">Priority:</h3>
               <div class="modal__option-radio-wrapper">
-                <input type="radio" name="priority" value="High" required id="priorityHigh">
-                <label for="priorityHigh">High</label>
-                <input checked type="radio" name="priority" value="Normal" required id="priorityNormal">
-                <label for="priorityNormal">Normal</label>
-                <input type="radio" name="priority" value="Low" required id="priorityLow">
-                <label for="priorityLow">Low</label>
+                <label for="priorityHigh">
+                    <input type="radio" name="priority" value="High" id="priorityHigh">
+                    <span for="priorityHigh">High</span>
+                </label>
+                <label for="priorityNormal">
+                    <input checked type="radio" name="priority" value="Normal" id="priorityNormal">
+                    <span for="priorityNormal">Normal</span>
+                </label>
+                <label for="priorityLow">
+                    <input type="radio" name="priority" value="Low" id="priorityLow">
+                    <span for="priorityLow">Low</span>
+                </label>
               </div>
-            </div>
+            </label>
           </div>
           <div class="modal__controls">
             <button type="submit" class="button modal__button" id="saveModalButton">Save</button>
