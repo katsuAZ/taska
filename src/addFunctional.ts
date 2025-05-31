@@ -70,7 +70,7 @@ export function addFunctional () {
     }
 
     function getDateString (cont: TaskInfo) {
-        let result = "";
+        let result: string;
         result = cont.date.getFullYear() + "-" + cont.date.getMonth() + "-" + cont.date.getDate();
         return result;
     }
