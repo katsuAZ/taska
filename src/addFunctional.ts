@@ -65,8 +65,14 @@ export function addFunctional () {
             modalInputDate.value = '' : undefined;
         modalInputTag && modalInputTag.value.length > 0 ?
             modalInputTag.value = '' : undefined;
-        // modalInputPriority ?
-        //     modalInputPriority.value : undefined;
+        modalInputPriorityNormal ?
+            modalInputPriorityNormal.checked = true : undefined;
+    }
+
+    function getDateString (cont: TaskInfo) {
+        let result: string;
+        result = cont.date.getFullYear() + "-" + cont.date.getMonth() + "-" + cont.date.getDate();
+        return result;
     }
 
     function setupTaskButtons () {
@@ -85,37 +91,35 @@ export function addFunctional () {
 
                 modalInputTitle? modalInputTitle.value = task.title : undefined;
                 modalInputDescription? modalInputDescription.value = task.description : undefined;
-                modalInputDate? modalInputDate.value = task.date.toLocaleDateString() : undefined;
+                modalInputDate? modalInputDate.value = getDateString(task) : undefined;
+                console.log(modalInputDate);
+                console.log(modalInputDate?.value);
                 modalInputTag? modalInputTag.value = task.tag : undefined;
-                modalInputPriority? modalInputPriority.value = task.priority : undefined;
+                modalInputPriorityHigh && task.priority == "High" ? modalInputPriorityHigh.checked = true : false;
+                modalInputPriorityNormal && task.priority == "Normal" ? modalInputPriorityNormal.checked = true : false;
+                modalInputPriorityLow && task.priority == "Low" ? modalInputPriorityLow.checked = true : false;
 
                 editModalButton ? editModalButton.style.display = "block" : undefined;
                 saveModalButton ? saveModalButton.style.display = "none" : undefined;
                 modalWindow ? modalWindow.style.display = "block" : undefined;
+            });
 
-                editModalButton?.addEventListener('click', () => {
-                    modalInputTitle ? task.title = modalInputTitle.value : undefined;
-                    modalInputDescription ? task.description = modalInputDescription.value : undefined;
-                    modalInputDate ? task.date = new Date(modalInputDate.value) : undefined;
-                    modalInputTag ? task.tag = modalInputTag.value : undefined;
-                    modalInputPriority ? task.priority = modalInputPriority.value : undefined;
+            editModalButton?.addEventListener('click', () => {
+                modalInputTitle ? task.title = modalInputTitle.value : undefined;
+                modalInputDescription ? task.description = modalInputDescription.value : undefined;
+                modalInputDate ? task.date = new Date(modalInputDate.value) : undefined;
+                modalInputTag ? task.tag = modalInputTag.value : undefined;
+                modalInputPriorityHigh?.checked == true ? task.priority = "High" :
+                    modalInputPriorityNormal?.checked == true ? task.priority = "Normal" :
+                        modalInputPriorityLow?.checked == true ? task.priority = "Low" : undefined;
 
-                    renderTasks();
-                    modalWindow ? modalWindow.style.display = "none" : undefined;
-                    clearModal();
-                    setupTaskButtons();
-                });
+
+                renderTasks();
+                modalWindow ? modalWindow.style.display = "none" : undefined;
+                clearModal();
+                setupTaskButtons();
             });
         });
-
-        // deleteTaskButtons?.forEach((button, index) => {
-        //     button.addEventListener('click', function deleteTask (event) {
-        //         taskList.splice(index, 1);
-        //         event.currentTarget?.removeEventListener('click', deleteTask);
-        //         renderTasks();
-        //         setupTaskButtons();
-        //     });
-        // });
     }
     setupTaskButtons();
 
